@@ -7,12 +7,13 @@ const ModuleSchema = new mongoose.Schema({
         required: true
     },
     totalQuanity: {
-        type: Number,
+        type: String,
         required: true
     },
-    quantityNow: {
-        type: Number,
-    }  
+    lessons: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Lessons',
+    }
 })
 
 export default mongoose.model('Modules', ModuleSchema)

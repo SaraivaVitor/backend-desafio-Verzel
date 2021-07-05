@@ -10,11 +10,12 @@ class AdminController {
 
   //criando usuario
   async CreateUser(Req: Request, Res: Response) {
-    const { email, password } = Req.body
+    const { email, password, firstName } = Req.body
     const passwordHash = await bcrypt.hash(password, 8)
 
     try {
       const user = await Admin.create({
+        firstName: firstName,
         email: email,
         password: passwordHash
       })

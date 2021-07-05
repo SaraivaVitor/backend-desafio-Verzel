@@ -15,7 +15,7 @@ class ModulesController {
             })
 
             return Res.status(200).send({ message: `${name} adicionado ao banco com sucesso!` })
-
+            
         } catch (error) {
 
             return Res.status(401).send({ message: `Não foi possivel adicionar o módulo` })
@@ -29,7 +29,7 @@ class ModulesController {
 
         try {
 
-            const GetModule: any = await Module.find()
+            const GetModule: any = await Module.find().populate('lessons')
             return Res.json(GetModule)
 
         } catch (error) {
