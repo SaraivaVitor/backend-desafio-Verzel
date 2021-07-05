@@ -41,6 +41,21 @@ class LessonsController {
 
     }
 
+    //separando aulas pelo id
+    async FindLessonById (Req:Request, Res: Response){
+        const id = Req.params
+           
+        try{ 
+            const GetLessonById: any = await Lesson.findOne({"_id":id}).populate('lessons')
+            return Res.json([GetLessonById])
+
+        }catch(error){
+
+            return Res.status(401).send({ message: `Desculpe, mas não foi possivel encontrar a aula!` })
+
+        }
+    }
+
     //deletando aula
     async DeleteLesson(Req: Request, Res: Response) {
         const id = Req.params

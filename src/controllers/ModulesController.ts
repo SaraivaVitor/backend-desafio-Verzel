@@ -39,6 +39,23 @@ class ModulesController {
         }
 
     }
+
+    //separando módulo pelo id
+    async FindModuleById (Req:Request, Res: Response){
+
+        const id = Req.params
+           
+        try{ 
+            const GetModuleById: any = await Module.findOne({"_id":id}).populate('lessons')
+            return Res.json([GetModuleById])
+
+        }catch(error){
+
+            return Res.status(401).send({ message: `Desculpe, mas não foi possivel encontrar o módulo!` })
+
+        }
+    }
+
     //deletando modulo
     async DeleteModule(Req: Request, Res: Response) {
         const id = Req.params

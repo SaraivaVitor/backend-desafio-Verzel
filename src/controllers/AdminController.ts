@@ -50,12 +50,12 @@ class AdminController {
 
     try {
 
-      const UserExists: any = await Admin.findOne({ email }).select('+password')
+      const UserExists: any = await Admin.findOne({ email }).select("+password")
+  
 
       // Tratando erros possíveis.
       if (!UserExists) return Res.status(401).send({ message: `Desculpe, aqui consta q seu usuario não existe!` })
-      if (await bcrypt.compare(password, UserExists[0].password)) return Res.status(401).send({ message: `Senha incorreta!` })
-
+      if (!await bcrypt.compare(password, UserExists.password)) return Res.status(401).send({ message: `Senha incorreta!` })
       UserExists.password = undefined
 
       const token = jwt.sign({ id: UserExists.id }, "238e27d7791c8ab87201c216c4df0b90", {
@@ -64,7 +64,7 @@ class AdminController {
       return Res.status(200).send({ UserExists, token, message: `${email} logado!` })
 
     } catch (error) {
-
+      console.log(error)
       return Res.status(401).send({ message: `Desculpe ${email} não foi possivel logar!` })
 
     }
