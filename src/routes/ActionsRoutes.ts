@@ -15,7 +15,8 @@ ActionsRoutes.put('/api/editmodules/:_id',AuthMiddleware, ModulesController.Upda
 //Rotas de aulas
 ActionsRoutes.get('/api/alllessons', LessonsController.FindAllLessons)
 ActionsRoutes.get('/api/alllessons/:_id',  LessonsController.FindLessonById)
-ActionsRoutes.post('/api/createlesson/:_id',AuthMiddleware, LessonsController.CreateLesson)
+ActionsRoutes.get('/api/alllessonsbymodule/:module',  LessonsController.FindLessonsByModule)
+ActionsRoutes.post('/api/createlesson',AuthMiddleware, LessonsController.CreateLesson)
 ActionsRoutes.delete('/api/deletelesson/:_id',AuthMiddleware, LessonsController.DeleteLesson)
 ActionsRoutes.put('/api/editlesson/:_id',AuthMiddleware, LessonsController.UpdateLesson)
 

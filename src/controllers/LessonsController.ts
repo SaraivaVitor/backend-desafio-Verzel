@@ -1,26 +1,27 @@
 import { Request, Response } from 'express'
 import Lesson from '../models/Lessons'
+import {ObjectId} from 'mongodb'
 
 class LessonsController {
 
     //criando Aula
     async CreateLesson(Req: Request, Res: Response) {
-        const { name, date } = Req.body
-        const moduleId = Req.params
+        const { name, date, description, module } = Req.body
 
         try {
 
             await Lesson.create({
                 name: name,
                 date: date,
-                module: moduleId
+                description: description,
+                module: module
             })
 
             return Res.status(200).send({ message: `${name} adicionado ao banco com sucesso!` })
 
         } catch (error) {
 
-            return Res.status(401).send({ message: `Não foi possivel adicionar o módulo` })
+            return Res.status(401).send({ error, message: `Não foi possivel adicionar o módulo` })
 
         }
     }
@@ -40,6 +41,27 @@ class LessonsController {
         }
 
     }
+
+    //listando aulas pelo modulo
+    async FindLessonsByModule(Req: Request, Res: Response) {
+        const {module}  = Req.params
+
+
+        try {
+            
+            const GetLessons: any = await Lesson.find({"module": new ObjectId(module)})
+            console.log(GetLessons)
+            return Res.json(GetLessons)
+            
+
+        } catch (error) {
+
+            return Res.status(400).send({error, message: "Não foi possivel encontrar as aulas!" })
+
+        }
+
+    }
+
 
     //separando aulas pelo id
     async FindLessonById (Req:Request, Res: Response){

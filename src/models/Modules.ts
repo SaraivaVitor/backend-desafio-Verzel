@@ -9,10 +9,6 @@ const ModuleSchema = new mongoose.Schema({
     totalQuanity: {
         type: String,
         required: true
-    },
-    lessons: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Lessons',
     }
 })
 

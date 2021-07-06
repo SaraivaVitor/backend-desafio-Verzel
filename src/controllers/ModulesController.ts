@@ -40,6 +40,9 @@ class ModulesController {
 
     }
 
+
+
+
     //separando módulo pelo id
     async FindModuleById (Req:Request, Res: Response){
 
