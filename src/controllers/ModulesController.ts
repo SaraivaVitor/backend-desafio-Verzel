@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import Module from '../models/Modules'
 
+
 class ModulesController {
 
     //criando modulo
@@ -9,16 +10,16 @@ class ModulesController {
 
         try {
 
-            await Module.create({
+            const module = await Module.create({
                 name: name,
-                totalQuanity: totalQuanity
+                totalQuanity: totalQuanity,
             })
 
             return Res.status(200).send({ message: `${name} adicionado ao banco com sucesso!` })
             
         } catch (error) {
 
-            return Res.status(401).send({ message: `Não foi possivel adicionar o módulo` })
+            return Res.status(401).send({error, message: `Não foi possivel adicionar o módulo` })
 
         }
     }

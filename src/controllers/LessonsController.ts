@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
-import Lesson from '../models/Lessons'
 import {ObjectId} from 'mongodb'
 
+import Lesson from '../models/Lessons'
 class LessonsController {
 
     //criando Aula
