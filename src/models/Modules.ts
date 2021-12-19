@@ -1,18 +1,19 @@
-import mongoose from '../database/index'
-
+import mongoose from "../database/index";
 
 const ModuleSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
+  name: {
+    type: String,
+    required: true,
+  },
+  totalQuanity: {
+    type: String,
+    required: true,
+  },
+  lessons: [
+    {
+      type: String,
     },
-    totalQuanity: {
-        type: String,
-        required: true
-    },
-    lessons: [{
-        type: String
-    }]
-})
+  ],
+});
 
-export default mongoose.model('Modules', ModuleSchema)
+export default mongoose.model("Modules", ModuleSchema);
